@@ -7,17 +7,19 @@
 <title>Angebote &amp; Rechnungen – privates Projekt für Freunde und Bekannte</title>
 <meta name="description" content="Ein privates Hobbyprojekt für Freunde, Familie und Bekannte: Angebote und Rechnungen als PDF, mit E-Rechnung. Die Nutzung ist kostenlos, PDFs gibt es aber nur mit Freischaltcode auf persönliche Anfrage.">
 <meta name="robots" content="index, follow">
+<link rel="canonical" href="https://peter-unruh.github.io/angebote-und-rechnungen/">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://peter-unruh.github.io/angebote-und-rechnungen/">
 <meta property="og:locale" content="de_DE">
 <meta property="og:site_name" content="Angebote &amp; Rechnungen">
 <meta property="og:title" content="Angebote &amp; Rechnungen – ein privates Projekt">
 <meta property="og:description" content="Für Freunde, Familie und Bekannte: Angebote und Rechnungen als PDF, mit E-Rechnung. PDFs nur mit Freischaltcode auf persönliche Anfrage.">
-<meta property="og:image" content="vorschau.png">
+<meta property="og:image" content="https://peter-unruh.github.io/angebote-und-rechnungen/vorschau.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="App-Symbol und der Satz: Angebote und Rechnungen, ein privates Projekt für Freunde und Bekannte">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Angebote & Rechnungen","description":"Privates Hobbyprojekt für Freunde, Familie und Bekannte: Angebote, Rechnungen, Abschlags- und Schlussrechnungen als PDF, mit E-Rechnung (ZUGFeRD). PDFs nur mit Freischaltcode auf persönliche Anfrage. Alle Daten bleiben auf dem Gerät.","applicationCategory":"BusinessApplication","operatingSystem":"Alle, läuft im Browser","inLanguage":"de","featureList":["Angebote und Rechnungen als PDF","E-Rechnung ZUGFeRD","Abschlags- und Schlussrechnungen","Kleinunternehmer § 19 UStG","Bauleistungen § 13b UStG","Offline nutzbar und als App installierbar","Keine Anmeldung, Daten bleiben auf dem Gerät"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Angebote & Rechnungen","url":"https://peter-unruh.github.io/angebote-und-rechnungen/","description":"Privates Hobbyprojekt für Freunde, Familie und Bekannte: Angebote, Rechnungen, Abschlags- und Schlussrechnungen als PDF, mit E-Rechnung (ZUGFeRD). PDFs nur mit Freischaltcode auf persönliche Anfrage. Alle Daten bleiben auf dem Gerät.","applicationCategory":"BusinessApplication","operatingSystem":"Alle, läuft im Browser","inLanguage":"de","featureList":["Angebote und Rechnungen als PDF","E-Rechnung ZUGFeRD","Abschlags- und Schlussrechnungen","Kleinunternehmer § 19 UStG","Bauleistungen § 13b UStG","Offline nutzbar und als App installierbar","Keine Anmeldung, Daten bleiben auf dem Gerät"]}</script>
 <meta name="theme-color" content="#FFD21F" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#181D20" media="(prefers-color-scheme: dark)">
 <meta name="application-name" content="Angebote &amp; Rechnungen">
@@ -1199,7 +1201,7 @@ details.fold .card-body > .hint:first-child, details.fold .card-body > .lic-stat
   /* Wer das Programm gemacht hat (steht in der Anleitung) und die Adresse der Website, z. B. 'https://name.github.io/projekt/'.
      Die Adresse nennt die Anleitung auch dann, wenn das Programm als Datei läuft. Leer = online die aktuelle Adresse. */
   const AUTHOR = 'Peter Unruh';
-  const SITE_URL = '';
+  const SITE_URL = 'https://peter-unruh.github.io/angebote-und-rechnungen/';
   const CHANGES = [
     { v: '2.2', date: '2026-10-30', short: 'Prüfung von Steuernummer und USt-IdNr., aufgeräumte Einstellungen, neuer Test-Download und ein paar Kleinigkeiten.', items: [
       'Steuernummer und USt-IdNr. werden geprüft: Anzahl der Ziffern, Aufbau je Bundesland und bei deutschen USt-IdNr. die Prüfziffer. Auch die Angabe beim Kunden.',
@@ -1227,6 +1229,9 @@ details.fold .card-body > .hint:first-child, details.fold .card-body > .lic-stat
   ];
   const IS_ONLINE = /^https?:$/.test(location.protocol);
   const IMPRESSUM_URL = IS_ONLINE ? new URL('impressum.html', location.href).href : (SITE_URL ? SITE_URL.replace(/\/?$/, '/') + 'impressum.html' : '');
+  /* Link zum Impressum: online die Datei daneben, als Datei die Website (öffnet in neuem Tab), sonst keiner */
+  const IMP_HREF = IS_ONLINE ? 'impressum.html' : IMPRESSUM_URL;
+  const impLink = (text) => { const a = el('a', null, text); a.href = IMP_HREF; if (!IS_ONLINE) { a.target = '_blank'; a.rel = 'noopener'; } return a; };
   const SEO_TITLE = document.title;
 
   /* ================= Firmendaten & Texte ================= */
@@ -5883,8 +5888,8 @@ details.fold .card-body > .hint:first-child, details.fold .card-body > .lic-stat
     if (document.activeElement !== ta) ta.value = typeof L.code === 'string' ? L.code : '';
     $('#lic-go').textContent = S.ok ? 'Code ändern' : 'Freischalten';
     const lh = $('#lic-hint');
-    lh.textContent = 'Der Code gehört zu genau einem Firmennamen. Wird der Firmenname geändert, braucht ihr einen neuen Code. Den Code gibt es kostenlos auf persönliche Anfrage ' + (IS_ONLINE ? 'beim Ersteller, Kontakt im ' : 'bei der Person, von der ihr das Programm habt.');
-    if (IS_ONLINE) { const a = el('a', null, 'Impressum'); a.href = 'impressum.html'; lh.append(a, '.'); }
+    lh.textContent = 'Der Code gehört zu genau einem Firmennamen. Wird der Firmenname geändert, braucht ihr einen neuen Code. Den Code gibt es kostenlos auf persönliche Anfrage ' + (IMP_HREF ? 'beim Ersteller, Kontakt im ' : 'bei der Person, von der ihr das Programm habt.');
+    if (IMP_HREF) lh.append(impLink('Impressum'), '.');
   }
   $('#lic-go').addEventListener('click', () => {
     const raw = $('#lic-code').value;
@@ -6796,9 +6801,12 @@ details.fold .card-body > .hint:first-child, details.fold .card-body > .lic-stat
   /* ================= Begrüßung für neue Besucher ================= */
   function renderHello() {
     $('#hello').hidden = !!curName() || Object.keys(Data.docs).length > 0;
-    $('#site-foot').hidden = !IS_ONLINE;
-    $('#imp-link').hidden = !IS_ONLINE;
-    if (IS_ONLINE) { const c = $('#hello-code'); c.textContent = 'beim Ersteller, Kontakt im '; const a = el('a', null, 'Impressum'); a.href = 'impressum.html'; c.appendChild(a); }
+    $('#site-foot').hidden = !IMP_HREF;
+    $('#imp-link').hidden = !IMP_HREF;
+    if (IMP_HREF) {
+      ['#site-foot a', '#imp-link a'].forEach((q) => { const old = $(q); old.replaceWith(impLink(old.textContent)); });
+      const c = $('#hello-code'); c.textContent = 'beim Ersteller, Kontakt im '; c.appendChild(impLink('Impressum'));
+    }
   }
 
   /* ================= App-Symbol, Version, Über ================= */

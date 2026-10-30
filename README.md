@@ -4,7 +4,7 @@ Ein Hobbyprojekt für Freunde, Familie und Bekannte, die Angebote und Rechnungen
 
 **Der Haken:** PDFs lassen sich nur mit einem Freischaltcode erstellen. Den gibt es kostenlos auf persönliche Anfrage beim Ersteller, die Kontaktdaten stehen im Impressum der Website. Einrichten, Ausfüllen und die Vorschau gehen auch ohne Code.
 
-**Zum Programm:** Link oben rechts unter „About“.
+**Zum Programm:** [peter-unruh.github.io/angebote-und-rechnungen](https://peter-unruh.github.io/angebote-und-rechnungen/)
 
 ![Angebote und Rechnungen, ein privates Projekt](vorschau.png)
 
