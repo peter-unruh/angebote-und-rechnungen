@@ -1,0 +1,18 @@
+{
+  "id": "./",
+  "name": "Angebote & Rechnungen",
+  "short_name": "Rechnungen",
+  "description": "Privates Projekt für Freunde, Familie und Bekannte: Angebote und Rechnungen als PDF, mit E-Rechnung. PDFs nur mit Freischaltcode auf persönliche Anfrage. Alle Daten bleiben auf dem Gerät.",
+  "lang": "de",
+  "categories": ["business", "finance", "productivity"],
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FFC21F",
+  "theme_color": "#FFD21F",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
