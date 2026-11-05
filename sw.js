@@ -1,7 +1,7 @@
 /* Service Worker für „Angebote & Rechnungen“: macht das Programm offline nutzbar.
-   Er speichert nur die Programmdateien. Eure Daten liegen im Browser-Speicher und werden hier nicht angefasst.
-   Bei einer neuen Version den Namen in CACHE anpassen, z. B. 'angebote-rechnungen-2.3'. */
-const CACHE = 'angebote-rechnungen-2.2';
+   Er speichert nur die Programmdateien. Deine Daten liegen im Browser-Speicher und werden hier nicht angefasst.
+   Bei einer neuen Version den Namen in CACHE anpassen, z. B. 'angebote-rechnungen-3.3'. */
+const CACHE = 'angebote-rechnungen-3.2';
 const FILES = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png', './impressum.html'];
 
 self.addEventListener('install', (e) => {

@@ -10,8 +10,9 @@
 :root { --bg: #EDF1F6; --surface: #FFFFFF; --ink: #1B2124; --muted: #5A6268; --line: #D6DADE; --link: #0B4DB0;
   --brand: linear-gradient(90deg, #FFD21F 0%, #FF9F1C 50%, #FF6436 100%); }
 @media (prefers-color-scheme: dark) {
-  :root { --bg: #0F1214; --surface: #181D20; --ink: #E7EAEC; --muted: #9AA3A9; --line: #2A3135; --link: #8DB8EE; color-scheme: dark; }
+  :root:not([data-theme="light"]) { --bg: #0F1214; --surface: #181D20; --ink: #E7EAEC; --muted: #9AA3A9; --line: #2A3135; --link: #8DB8EE; color-scheme: dark; }
 }
+:root[data-theme="dark"] { --bg: #0F1214; --surface: #181D20; --ink: #E7EAEC; --muted: #9AA3A9; --line: #2A3135; --link: #8DB8EE; color-scheme: dark; }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
 body::before { content: ""; display: block; height: 4px; background: var(--brand); }
@@ -26,6 +27,10 @@ a { color: var(--link); font-weight: 600; overflow-wrap: anywhere; }
 .muted { color: var(--muted); font-size: 14px; }
 .addr { font-size: 17px; }
 </style>
+<script>
+/* Gleiche Darstellung wie im Programm (hell, dunkel oder wie am Gerät) */
+try { var t = localStorage.getItem('baubuero-theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) { /* egal */ }
+</script>
 </head>
 <body>
 <main>
@@ -35,16 +40,16 @@ a { color: var(--link); font-weight: 600; overflow-wrap: anywhere; }
     <h1>Impressum</h1>
     <p class="muted">Angaben gemäß § 18 Abs. 1 Medienstaatsvertrag (MStV)</p>
     <p class="addr">Peter Unruh<br>Johannisweg 26<br>32791 Lage</p>
-    <p>E-Mail: <a id="mail" href="#">peter.unruh1999 [at] gmail.com</a></p>
+    <p>E-Mail: <a id="mail" href="#">peter.unruh1999+angebote-rechnungen [at] gmail.com</a></p>
   </section>
 
   <section class="card">
-    <h2>Über das Projekt</h2>
-    <p>„Angebote &amp; Rechnungen“ ist ein privates Hobbyprojekt ohne kommerzielle Absicht, gedacht für Freunde, Familie und Bekannte.</p>
+    <h2>Über das Programm</h2>
+    <p>Mit „Angebote &amp; Rechnungen“ schreibst du Angebote und Rechnungen mit Vorlage, kostenlos und ohne Anmeldung. Ich biete es ohne kommerzielle Absicht an.</p>
     <ul>
       <li><b>Die Nutzung ist kostenlos.</b> Es gibt keine Werbung und kein Abo.</li>
-      <li><b>PDFs gibt es nur mit Freischaltcode.</b> Den vergebe ich kostenlos auf persönliche Anfrage per E-Mail. Schreibt dafür euren Firmennamen genau so, wie er im Programm steht. Einen Anspruch auf einen Code, auf Hilfe oder auf neue Versionen gibt es nicht.</li>
-      <li><b>Ohne Gewähr.</b> Das Programm ersetzt keine Steuer- oder Rechtsberatung. Prüft jedes Dokument vor dem Versand.</li>
+      <li><b>Freischaltcode:</b> Die ersten 5 Dokumente gehen ohne Code, mit einem kleinen Hinweis und QR-Code zu dieser Website unten im PDF. Für unbegrenzt viele Dokumente ohne Hinweis gibt es einen Freischaltcode auf Anfrage per E-Mail. Schreib dafür deinen Firmennamen genau so, wie er im Programm steht. Einen Anspruch auf einen Code, auf Hilfe oder auf neue Versionen gibt es nicht.</li>
+      <li><b>Ohne Gewähr.</b> Das Programm ersetzt keine Steuer- oder Rechtsberatung. Prüf jedes Dokument vor dem Versand.</li>
     </ul>
     <p>Feedback, Ideen und Hinweise auf Fehler sind willkommen, an dieselbe Adresse.</p>
   </section>
@@ -53,7 +58,7 @@ a { color: var(--link); font-weight: 600; overflow-wrap: anywhere; }
     <h2>Datenschutzerklärung</h2>
 
     <h3>Kurz gesagt</h3>
-    <p>Das Programm läuft komplett in eurem Browser. Kunden, Angebote, Rechnungen und Firmendaten werden nur auf eurem Gerät gespeichert und nie an mich oder an Dritte übertragen. Es gibt keine Cookies, keine Statistik- oder Werbedienste und keine Inhalte von fremden Servern.</p>
+    <p>Das Programm läuft komplett in deinem Browser. Kunden, Angebote, Rechnungen und Firmendaten werden nur auf deinem Gerät gespeichert und nie an mich oder an Dritte übertragen. Es gibt keine Cookies, keine Statistik- oder Werbedienste und keine Inhalte von fremden Servern.</p>
 
     <h3>Verantwortlich</h3>
     <p>Peter Unruh, Anschrift und E-Mail wie oben im Impressum.</p>
@@ -63,25 +68,25 @@ a { color: var(--link); font-weight: 600; overflow-wrap: anywhere; }
     <p>Dabei können Daten in die USA übermittelt werden. GitHub ist nach dem EU-US Data Privacy Framework zertifiziert. Mehr dazu in der <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">Datenschutzerklärung von GitHub</a>.</p>
 
     <h3>Speicherung im Browser</h3>
-    <p>Eure Eingaben speichert das Programm im Speicher eures Browsers (Local Storage und IndexedDB), damit sie beim nächsten Öffnen wieder da sind. Für die Nutzung ohne Internet legt der Browser außerdem die Programmdateien in einem Zwischenspeicher ab. Das ist für das von euch gewünschte Programm unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Diese Daten verlassen euer Gerät nicht. Ihr könnt sie jederzeit löschen, im Programm unter Einstellungen bei „Daten löschen“ oder in den Einstellungen des Browsers.</p>
-    <p>Wählt ihr einen Ordner für automatisches Speichern, schreibt das Programm PDFs und Sicherung nur in diesen Ordner auf eurem Computer.</p>
+    <p>Deine Eingaben speichert das Programm im Speicher deines Browsers (Local Storage und IndexedDB), damit sie beim nächsten Öffnen wieder da sind. Für die Nutzung ohne Internet legt der Browser außerdem die Programmdateien in einem Zwischenspeicher ab. Das ist für das von dir gewünschte Programm unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Diese Daten verlassen dein Gerät nicht. Du kannst sie jederzeit löschen, im Programm unter Einstellungen bei „Daten löschen“ oder in den Einstellungen des Browsers.</p>
+    <p>Wählst du einen Ordner für automatisches Speichern, schreibt das Programm PDFs und Sicherung nur in diesen Ordner auf deinem Computer.</p>
 
     <h3>Freischaltcode</h3>
-    <p>Der Freischaltcode wird nur in eurem Browser geprüft. Dabei wird nichts übertragen.</p>
+    <p>Der Freischaltcode wird nur in deinem Browser geprüft. Dabei wird nichts übertragen.</p>
 
     <h3>Kontakt per E-Mail</h3>
-    <p>Wenn ihr mir schreibt, zum Beispiel für einen Freischaltcode, verarbeite ich eure Angaben nur, um eure Anfrage zu beantworten (Art. 6 Abs. 1 lit. b und f DSGVO), und lösche sie, sobald sie nicht mehr gebraucht werden. Mein E-Mail-Postfach liegt bei Google (Gmail), dort werden die Nachrichten gespeichert.</p>
+    <p>Wenn du mir schreibst, zum Beispiel für einen Freischaltcode, verarbeite ich deine Angaben nur, um deine Anfrage zu beantworten (Art. 6 Abs. 1 lit. b und f DSGVO), und lösche sie, sobald sie nicht mehr gebraucht werden. Mein E-Mail-Postfach liegt bei Google (Gmail), dort werden die Nachrichten gespeichert.</p>
 
-    <h3>Eure Rechte</h3>
-    <p>Ihr habt das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung, auf Datenübertragbarkeit und auf Widerspruch. Außerdem könnt ihr euch bei einer Datenschutz-Aufsichtsbehörde beschweren.</p>
+    <h3>Deine Rechte</h3>
+    <p>Du hast das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung, auf Datenübertragbarkeit und auf Widerspruch. Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren.</p>
 
-    <p class="muted">Stand: Oktober 2026</p>
+    <p class="muted">Stand: November 2026</p>
   </section>
 </main>
 <script>
 /* Die E-Mail-Adresse wird erst im Browser zusammengesetzt. So lesen Programme, die Adressen für Werbemails sammeln, sie schlechter aus. */
 (function () {
-  var u = 'peter.unruh1999', d = 'gmail.com', a = document.getElementById('mail');
+  var u = 'peter.unruh1999' + '+angebote-rechnungen', d = 'gmail.com', a = document.getElementById('mail');
   a.href = 'mailto:' + u + '@' + d + '?subject=' + encodeURIComponent('Angebote & Rechnungen');
   a.textContent = u + '@' + d;
 })();
